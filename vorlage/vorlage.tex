@@ -1,0 +1,165 @@
+% ----------------------------------------------------------------------------
+% Vorlage Abschlussarbeit Informatik THM (minimal)
+%
+% Copyright (c) 2016 - 2017 by Burkhardt Renz. All rights reserved.
+% Die Vorlage für eine Abschlussarbeit in der Informatik am Fachbereich
+% MNI der THM ist lizenziert unter einer Creative Commons
+% Namensnennung-Nicht kommerziell 4.0 International Lizenz.
+%
+% $Id: vorlage.tex 4197 2017-10-23 07:18:53Z br $
+% ----------------------------------------------------------------------------
+
+\documentclass[%
+	fontsize=12pt,
+	BCOR=8.25mm,         % Bindekorrektur
+	DIV=12,              % Satzspiegel
+	parskip=half,				 % Abstand zwischen Absätzen
+	bibliography=totoc,	 % Literaturverzeichnis im Inhaltsverzeichnis
+	headsepline=on,      % Trennlinie Kolumnentitel
+	oneside,
+	]{scrbook}
+
+%% Präambel
+\usepackage[english, ngerman]{babel} % deutsche typogr. Regeln + Trenntabelle
+\usepackage[T1]{fontenc}             % interner TeX-Font-Codierung
+\usepackage{lmodern}                 % Font Latin Modern
+\usepackage[utf8]{inputenc}          % Font-Codierung der Eingabedatei
+\usepackage[babel]{csquotes}         % Anführungszeichen
+\usepackage{graphicx}                % Graphiken
+\usepackage{booktabs}                % Tabellen schöner
+\usepackage{listingsutf8}            % Listings mit Einstellungen
+\lstset{basicstyle=\small\ttfamily,
+	tabsize=2,
+	basewidth={0.5em,0.45em},
+	extendedchars=true}
+\usepackage{amsmath}	               % Mathematik
+\usepackage[pdftex]{hyperref}       
+\hypersetup{
+	bookmarksopen=true,
+	bookmarksopenlevel=3,
+	colorlinks,
+	citecolor=blue,
+	linkcolor=blue,
+}
+\usepackage{scrhack}								 % unterdrückt Fehlermeldung von listings
+\usepackage[a4paper,left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+
+%% Verzeichnisse
+\usepackage{tocstyle} 
+\usetocstyle{KOMAlike}
+
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+%% Nummerierungstiefen
+\setcounter{tocdepth}{3}             % 3 Stufen im Inhaltsverzeichnis
+\setcounter{secnumdepth}{3} 		     % 3 Stufen in Abschnittnummerierung
+
+% ----------------------------------------------------------------------------
+\begin{document}
+
+\frontmatter
+
+%% Titelseite
+\begin{titlepage}
+	\begin{center}
+	\includegraphics[width=0.9\textwidth]{img/mni-logo}
+	
+	\vspace{5cm}	
+
+	\Large\textbf{\sffamily Bachelorarbeit}
+
+	\vspace{1cm}	
+
+	\huge\textbf{\sffamily Vorlage für eine Abschlussarbeit mit
+		\LaTeX}
+
+	\normalsize
+	\vspace{1cm}	
+
+	zur Erlangung des akademischen Grades
+
+		Bachelor of Science (B.\,Sc.)
+
+	vorgelegt dem\\
+	Fachbereich Mathematik, Naturwissenschaften und Informatik\\
+	der Technischen Hochschule Mittelhessen\\
+
+	von \\[1cm]	
+
+	\textbf{Burkhardt Renz}\\ [.5cm] 
+	im Januar 2018
+	\end{center}
+	\vfill
+	\begin{tabular}{ll}
+		Referent: & Prof. Dr. Donald E. Knuth\\ 
+		Korreferent: & Prof. Dr. Leslie Lamport\\ 
+	\end{tabular}
+\end{titlepage}
+
+%% Erklärung
+\pagestyle{empty}
+\begin{quote}
+	\vspace*{4cm}
+
+	\begin{center}
+		\textbf{\Large\sffamily Eidesstattliche Erklärung}
+	\end{center}
+
+	Hiermit versichere ich, die vorliegende Arbeit selbstständig und unter
+	ausschließlicher Verwendung der angegebenen Literatur und Hilfsmittel
+	erstellt zu haben.
+
+	Die Arbeit wurde bisher in gleicher oder ähnlicher Form keiner anderen
+	Prüfungsbehörde vorgelegt und auch nicht veröffentlicht.
+
+	\vspace{2em}
+
+	Gießen, 12. September 2016
+\end{quote}
+\cleardoubleemptypage
+
+%% Zusammenfassung
+\pagestyle{empty}
+\begin{quote}
+	\vspace*{4cm}
+
+	\begin{center}
+		\textbf{\Large\sffamily Abstract}
+	\end{center}
+	
+	Diese Arbeit befasst sich mit WebAssembly (abgekürzt Wasm). WebAssembly ist eine neue low-level Sprache die nahezu native Laufzeitperformanz bietet und von allen großen Browsern unterstützt wird. 
+	Nach einer Einführung, die einen ersten Überblick bietet, wird WebAssembly erläutert.
+	Hierbei wird hauptsächlich auf die Architektur, die Konzepte und Unterstützte Programmiersprachen eingegangen. 
+	
+	Im Anschluss geht es um die Verwendung im Browser und zukünftige Features von WebAssembly. Nach dem ein größeres Verständnis zu der Technologie vorliegt, werden die Vorteile und Anwendungsmöglichkeiten erläutert. Im darauffolgenden Kapitel geht es um die Verbreitung dieser Technologie.
+	
+	Der Ausblick zeigt welche Möglichkeiten WebAssembly in der Zukunft hat und argumentiert die Erfolgsaussichten. In der Diskussion wird ein kritisches Fazit gezogen.
+\end{quote}
+
+%% Verzeichnissse
+%\settocfeature{entryhook}{\sffamily}    % alle Einträge wie im Text serifenlos
+\tableofcontents
+
+\settocfeature{entryhook}{\rmfamily}    % Einträge wie im Text mit Serifen
+\listoffigures
+\listoftables
+\lstlistoflistings
+
+\mainmatter 
+\pagestyle{headings}
+
+\input{einfuehrung}
+\input{webassembly}
+\input{vorteileundanwendungsmoeglichkeiten}
+\input{verbreitung}
+\input{ausblick}
+\input{diskussion}
+
+\backmatter 
+
+\appendix
+\input{litverz}
+
+\end{document}
+% ----------------------------------------------------------------------------
